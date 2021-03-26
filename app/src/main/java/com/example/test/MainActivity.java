@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                AlertDialog.Builder bd = new AlertDialog.Builder(MainActivity.this,R.style.Theme_AppCompat_Dialog_Alert);
+                AlertDialog.Builder bd = new AlertDialog.Builder(MainActivity.this);
 
                 final View cl = getLayoutInflater().inflate(R.layout.custom_dialog,null);
 
@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
                 });
 
+                AlertDialog dialog = bd.create();
+                dialog.show();
             }
         });
     }
