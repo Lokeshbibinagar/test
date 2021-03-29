@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.UserHandle;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,9 +53,13 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListIt
 
     ArrayList<ListItem> list;
     Context context;
-   public Uri image;
+    ArrayList<Uri> imageUri;
+   static int count=0;
 
-    public ListItemAdapter() {
+    public ListItemAdapter(ArrayList<Uri> imageUri)
+    {
+        this.imageUri = imageUri;
+        count++;
 
     }
 
@@ -93,9 +98,6 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListIt
 
 
 
-
-
-
     }
 
     @Override
@@ -109,25 +111,25 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ListIt
         ImageButton _button;
        RecyclerView horRecycler;
 
-       ArrayList<Uri> imageList;
-
         public ListItemHolder(View view){
             super(view);
-
-            imageList = new ArrayList<>();
 
             _title = view.findViewById(R.id.listTitle);
             _button = view.findViewById(R.id.listButton);
             horRecycler = view.findViewById(R.id.horRecycler);
 
             horRecycler.setHasFixedSize(false);
-            horRecycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false));
-
-            horRecycler.setAdapter(new ImageItemAdapter(imageList));
+            horRecycler.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL,false));
 
 
 
         }
+
+    }
+
+    void setImageRecycler(RecyclerView imageRecycler, ArrayList<Uri> imgUri)
+    {
+        imageRecycler.setAdapter(new ImageItemAdapter(imgUri));
 
     }
 }

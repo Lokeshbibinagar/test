@@ -17,6 +17,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;
@@ -91,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onActivityResult(requestCode,resultCode,data);
 
-        ArrayList<Uri> imgUri = new ArrayList<>();
 
         if(requestCode == 1 && resultCode == RESULT_OK)
         {
@@ -102,13 +102,12 @@ public class MainActivity extends AppCompatActivity {
                 ClipData.Item item = mClipData.getItemAt(i);
                 Uri uri = item.getUri();
 
-                imgUri.add(i,uri);
+                imageListUri.add(uri);
 
             }
 
-            imageListUri.addAll(imgUri);
+            ListItemAdapter ls = new ListItemAdapter(imageListUri);
 
-            new ImageItemAdapter(imageListUri);
 
         }
     }
